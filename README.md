@@ -1,0 +1,2 @@
+# CoreNLP-Parsey-Server
+CoreNLPのPostaggerの部分をParseyMcParsefaceに入れ替えたものです。
