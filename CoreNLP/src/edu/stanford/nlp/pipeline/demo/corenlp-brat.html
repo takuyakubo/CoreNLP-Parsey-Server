@@ -45,25 +45,26 @@
     </div>
 
     <!-- Annotators select -->
-    <div class="col-sm-8">
+    <div class="col-sm-10">
       <label for="annotators" class="label">&mdash; Annotations &mdash;</label>
+      <textarea class="form-control" rows="1" id="annotators2" placeholder="tokenize,ssplit,lemma,pos,depparse,parse" autofocus></textarea>
+      <label for="annotators" class="label">&mdash; Display &mdash;</label>
       <select id="annotators" data-placeholder="CoreNLP annotators"
               multiple class="chosen-select" title="Select CoreNLP annotators">
         <option value="pos"            selected > parts-of-speech           </option>
-        <option value="lemma"                   > lemmas                    </option>
-        <option value="ner"            selected > named entities            </option>
+        <option value="lemma"          selected > lemmas                    </option>
+        <option value="ner"                     > named entities            </option>
         <option value="regexner"                > named entities (regexner) </option>
-        <option value="parse"                   > constituency parse        </option>
+        <option value="parse"          selected > constituency parse        </option>
         <option value="depparse"       selected > dependency parse          </option>
-        <option value="openie"         selected > openie                    </option>
+        <option value="openie"                  > openie                    </option>
         <option value="coref"                   > coreference               </option>
         <!--<option value="entitylink"              > wikipedia entities        </option>--> <!-- TODO this regularly crashes corenlp.run -->
         <option value="kbp"                     > relations                 </option>
         <option value="sentiment"               > sentiment                 </option>
       </select>
     </div>
-
-    <div class="col-sm-2">
+    <div class="col-sm-2" style="display: none">
         <label for="language" class="label">&mdash; Language &mdash;</label>
         <select id="language" data-placeholder="Language"
                 class="chosen-select" title="Language">
