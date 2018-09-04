@@ -1017,12 +1017,9 @@ $(document).ready(function() {
             // (make sure the data contains that element)
             ok = false;
             exists = false;
-            console.log(annotator);
-            console.log($('#annotators').find('option:selected'));
             $('#annotators').find('option:selected').each(function(){
               exists = (exists || ($(this).val() == annotator));
             });
-            console.log(exists)
             if (! exists){
               ok = false;
             } else if (typeof data[selector] !== 'undefined') {
