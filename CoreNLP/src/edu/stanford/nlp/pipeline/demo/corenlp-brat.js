@@ -5,7 +5,7 @@
 var serverAddress = '';
 
 // Load Brat libraries
-var bratLocation = 'https://nlp.stanford.edu/js/brat/';
+var bratLocation = './js/brat';
 head.js(
   // External libraries
   bratLocation + '/client/lib/jquery.svg.min.js',
