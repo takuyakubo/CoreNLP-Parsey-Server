@@ -5,7 +5,7 @@
 var serverAddress = '';
 
 // Load Brat libraries
-var bratLocation = 'https://nlp.stanford.edu/js/brat/';
+var bratLocation = './js/brat';
 head.js(
   // External libraries
   bratLocation + '/client/lib/jquery.svg.min.js',
@@ -30,6 +30,7 @@ head.js(
 // visualization. It works better than the brat visualization.
 var useDagre = true;
 var currentQuery = 'The quick brown fox jumped over the lazy dog.';
+var currentAnnotators = 'tokenize,ssplit,pos,lemma,parse,depparse';
 var currentSentences = '';
 var currentText = '';
 
@@ -977,6 +978,11 @@ $(document).ready(function() {
       }
       $('#text').val(currentQuery);
     }
+    currentAnnotators = $('#annotators2').val();
+    if (currentAnnotators.trim() == '') {
+      currentAnnotators = 'tokenize,ssplit,pos,lemma,parse,depparse';
+      $('#annotators2').val(currentAnnotators);
+    }
     // Update the UI
     $('#submit').prop('disabled', true);
     $('#annotations').hide();
@@ -987,7 +993,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'POST',
       url: serverAddress + '?properties=' + encodeURIComponent(
-        '{"annotators": "' + annotators() + '", "date": "' + date() + '"}') +
+        '{"annotators": "' + currentAnnotators + '", "date": "' + date() + '"}') +
         '&pipelineLanguage=' + encodeURIComponent($('#language').val()),
       data: encodeURIComponent(currentQuery), //jQuery doesn't automatically URI encode strings
       dataType: 'json',
@@ -1010,7 +1016,13 @@ $(document).ready(function() {
             }
             // (make sure the data contains that element)
             ok = false;
-            if (typeof data[selector] !== 'undefined') {
+            exists = false;
+            $('#annotators').find('option:selected').each(function(){
+              exists = (exists || ($(this).val() == annotator));
+            });
+            if (! exists){
+              ok = false;
+            } else if (typeof data[selector] !== 'undefined') {
               ok = true;
             } else if (typeof data.sentences !== 'undefined' && data.sentences.length > 0) {
               if (typeof data.sentences[0][selector] !== 'undefined') {
