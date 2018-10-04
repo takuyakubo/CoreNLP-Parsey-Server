@@ -8,7 +8,6 @@ CoreNLPのPostaggerの部分をParseyMcParsefaceに入れ替えたものです�
 2018/05/30時点の[image](https://hub.docker.com/r/takuyakubo/core-parsey/)をuploadしてあるので、それを使う。
 
 ```
-$ docker pull takuyakubo/core-parsey
 $ docker run -it -p 5000:5000 -p 9000:9000 takuyakubo/core-parsey
 ```
 
